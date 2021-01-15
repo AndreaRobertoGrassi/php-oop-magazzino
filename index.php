@@ -6,19 +6,41 @@
   </head>
   <body>
     <div class="container">
+
       <?php
 
         class Magazzino
         {
           public $nome;
           public $location;
-          public $prodottiContenuti=[];
+          public $prodotti=[];
 
-          function __construct($nome, $location, $prodottiContenuti)
+          public function __construct($nome, $location, $prodotti)
           {
             $this -> nome = $nome;
             $this -> location = $location;
-            $this -> prodottiContenuti = $prodottiContenuti;
+            $this -> prodotti = $prodotti;    //array
+          }
+
+          public function lista () {
+            ?>
+              <ul>
+                <li> <?php echo $this-> nome; ?> </li>
+                <li> <?php echo $this-> location; ?> </li>
+                <?php
+                  for ($i=0; $i < count($this-> prodotti) ; $i++) {
+                    ?> <li> Prodotto <?php echo $i + 1 ?> </li> <?php
+                    foreach ($this-> prodotti[$i] as $value) {
+                      ?>
+                        <ul>
+                          <li> <?php echo $value; ?>  </li>
+                        </ul>
+                      <?php
+                    }
+                  }
+                ?>
+              </ul>
+            <?php
           }
         }
 
@@ -28,7 +50,7 @@
           public $peso;
           public $prezzo;
 
-          function __construct($nome, $peso, $prezzo)
+          function __construct($nome, $peso, $prezzo)    // questi valori non saranno mai vuoti
           {
             $this -> nome = $nome;
             $this -> peso = $peso;
@@ -36,14 +58,12 @@
           }
         }
 
-
         //istanze delle due classi
-        $prodotto1 = new Prodotto('motore',500, 1000);
-        $prodotto2 = new Prodotto('cerchione',400, 300);
-
+        $prodotto1 = new Prodotto('motore',500, 1000);  // primo prodotto
+        $prodotto2 = new Prodotto('cerchione',400, 300); // secondo prodotto
 
         $magazzino = new Magazzino('Primo Magazzino', 'Milano', [$prodotto1,$prodotto2]);
-        var_dump($magazzino);
+        $magazzino -> lista();
       ?>
     </div>
 
