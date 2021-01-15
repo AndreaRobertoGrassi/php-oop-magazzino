@@ -5,24 +5,22 @@
     <title></title>
   </head>
   <body>
+
     <div class="container">
-
       <?php
-
-        class Magazzino
-        {
+        class Magazzino{
+          //attributi
           public $nome;
           public $location;
           public $prodotti=[];
 
-          public function __construct($nome, $location, $prodotti)
-          {
+          public function __construct($nome, $location, $prodotti){  // questi campi non possono essere vuoti
             $this -> nome = $nome;
             $this -> location = $location;
             $this -> prodotti = $prodotti;    //array
           }
 
-          public function lista () {
+          public function lista () {    //funzione che crea una lista con nome magazzino, location e prodotti
             ?>
               <ul>
                 <li> <?php echo $this-> nome; ?> </li>
@@ -44,26 +42,24 @@
           }
         }
 
-        class Prodotto
-        {
+        class Prodotto{
+          //attributi
           public $nome;
           public $peso;
           public $prezzo;
 
-          function __construct($nome, $peso, $prezzo)    // questi valori non saranno mai vuoti
-          {
+          function __construct($nome, $peso, $prezzo){  // questi campi non possono essere vuoti
             $this -> nome = $nome;
             $this -> peso = $peso;
             $this -> prezzo = $prezzo;
           }
         }
 
-        //istanze delle due classi
-        $prodotto1 = new Prodotto('motore',500, 1000);  // primo prodotto
-        $prodotto2 = new Prodotto('cerchione',400, 300); // secondo prodotto
+        $prodotto1 = new Prodotto('motore',500, 1000);  // istanza prodotto1
+        $prodotto2 = new Prodotto('cerchione',400, 300); // istanza prodotto2
 
-        $magazzino = new Magazzino('Primo Magazzino', 'Milano', [$prodotto1,$prodotto2]);
-        $magazzino -> lista();
+        $magazzino = new Magazzino('Primo Magazzino', 'Milano', [$prodotto1,$prodotto2]);  // istanza magazzino
+        $magazzino -> lista();   //richiamo la funzione
       ?>
     </div>
 
