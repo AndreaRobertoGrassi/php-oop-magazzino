@@ -12,9 +12,9 @@
           //attributi
           public $nome;
           public $location;
-          public $prodotti=[];
+          public $prodotti;
 
-          public function __construct($nome, $location, $prodotti){  // questi campi non possono essere vuoti
+          public function __construct($nome, $location, $prodotti=[]){  // questi campi non possono essere vuoti
             $this -> nome = $nome;
             $this -> location = $location;
             $this -> prodotti = $prodotti;    //array
